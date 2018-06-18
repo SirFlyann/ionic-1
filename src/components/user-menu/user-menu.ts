@@ -4,6 +4,7 @@ import { AlertController, App, MenuController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { User } from '../../models/user.model';
 import { UserProfilePage } from '../../pages/user-profile/user-profile';
+import { EntityListPage } from '../../pages/entities/entities';
 
 /**
  * Generated class for the UserMenuComponent component.
@@ -29,6 +30,10 @@ export class UserMenuComponent extends BaseComponent{
 
   onProfile(): void {
     this.navCtrl.push(UserProfilePage);
+  }
+
+  onEntity(): void {
+    this.navCtrl.push(EntityListPage);
   }
 
 }

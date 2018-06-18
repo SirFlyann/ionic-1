@@ -26,14 +26,17 @@ import { MessageProvider } from '../providers/message/message';
 import { UserInfoComponent } from '../components/user-info/user-info';
 import { UserMenuComponent } from '../components/user-menu/user-menu';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
+import { EntityListPage } from '../pages/entities/entities';
+import { EntityCreatePage } from '../pages/entity-create/entity-create';
+import { EntityProvider } from '../providers/entity/entity';
 
 
 const firebaseAppConfig: FirebaseAppConfig = {
-  apiKey: "AIzaSyAGEIaAm8ZNwRCnUs98W_yUZDgqcjiBlNg",
-  authDomain: "ionic3-firebase-82407.firebaseapp.com",
-  databaseURL: "https://ionic3-firebase-82407.firebaseio.com",
-  storageBucket: "ionic3-firebase-82407.appspot.com",
-  messagingSenderId: "587642685324"
+    apiKey: "AIzaSyAfJM7-ynATfVWWdZkUZAcgGNGixwPK9Qg",
+    authDomain: "danielwpp-599e3.firebaseapp.com",
+    databaseURL: "https://danielwpp-599e3.firebaseio.com",
+    projectId: "danielwpp-599e3",
+    storageBucket: "danielwpp-599e3.appspot.com",
 }
 
 
@@ -50,6 +53,8 @@ const firebaseAppConfig: FirebaseAppConfig = {
     UserInfoComponent,
     UserMenuComponent,
     UserProfilePage,
+    EntityListPage,
+    EntityCreatePage,
     ProgressBarComponent
   ],
   imports: [
@@ -67,11 +72,14 @@ const firebaseAppConfig: FirebaseAppConfig = {
     HomePage,
     SignupPage,
     SigninPage,
-    UserProfilePage
+    UserProfilePage,
+    EntityListPage,
+    EntityCreatePage,
   ],
   providers: [
     AuthProvider,
     ChatProvider,
+    EntityProvider,
     StatusBar,
     SplashScreen,
     UserProvider,

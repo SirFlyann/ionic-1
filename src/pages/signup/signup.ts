@@ -27,6 +27,7 @@ export class SignupPage {
 
         this.signupForm = this.formBuilder.group({
             name: ['', [Validators.required, Validators.minLength(3)]],
+            cpf: ['', [Validators.required, Validators.minLength(6)]],
             username: ['', [Validators.required, Validators.minLength(3)]],
             email: ['', Validators.compose([Validators.required, Validators.pattern(emailRegex)])],
             password: ['', [Validators.required, Validators.minLength(6)]],
