@@ -28,6 +28,7 @@ import { UserMenuComponent } from '../components/user-menu/user-menu';
 import { UserProfilePage } from '../pages/user-profile/user-profile';
 import { EntityListPage } from '../pages/entities/entities';
 import { EntityCreatePage } from '../pages/entity-create/entity-create';
+import { EntityEditPage } from '../pages/entity-edit/entity-edit';
 import { EntityProvider } from '../providers/entity/entity';
 
 
@@ -55,6 +56,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     UserProfilePage,
     EntityListPage,
     EntityCreatePage,
+    EntityEditPage,
     ProgressBarComponent
   ],
   imports: [
@@ -75,6 +77,7 @@ const firebaseAppConfig: FirebaseAppConfig = {
     UserProfilePage,
     EntityListPage,
     EntityCreatePage,
+    EntityEditPage,
   ],
   providers: [
     AuthProvider,

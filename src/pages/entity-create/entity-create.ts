@@ -44,6 +44,7 @@ export class EntityCreatePage {
     let entityForm = this.entityForm.value;
     var uuid: string = uuidv1();
     this.entityProvider.createEntity({
+      uuid: uuid,
       title: entityForm.title,
       value1: entityForm.value1,
       value2: entityForm.value2,
