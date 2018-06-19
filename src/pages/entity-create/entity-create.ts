@@ -7,6 +7,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import * as firebase from 'firebase/app';
 import { EntityListPage } from '../../pages/entities/entities';
 
+const uuidv1 = require('uuid/v1');
+
 @Component({
   selector: 'page-entity-create',
   templateUrl: 'entity-create.html',
@@ -23,12 +25,12 @@ export class EntityCreatePage {
     public loadingCtrl: LoadingController,
     public authProvider: AuthProvider,
     public navParams: NavParams,
-  ){
+  ) {
      this.navCtrl = navCtrl;
 
      this.entityForm = this.formBuilder.group({
        title: ['', [Validators.required, Validators.minLength(3)]],
-       value1: ['', [Validators.required, Validators.minLength(6)]],
+       value1: ['', [Validators.required, Validators.minLength(3)]],
        value2: ['', [Validators.required, Validators.minLength(3)]],
      });
   }
@@ -38,9 +40,22 @@ export class EntityCreatePage {
   }
 
   onSubmit(): void {
-
     let loading: Loading = this.showLoading();
-    let formUser = this.entityForm.value;
+    let entityForm = this.entityForm.value;
+    var uuid: string = uuidv1();
+    this.entityProvider.createEntity({
+      title: entityForm.title,
+      value1: entityForm.value1,
+      value2: entityForm.value2,
+    }, uuid).then(() => {
+      console.log('Usuario cadastrado!');
+      this.navCtrl.setRoot(EntityListPage);
+      loading.dismiss();
+    }).catch((error: any) => {
+      console.log(error);
+      loading.dismiss();
+      this.showAlert(error);
+    });
   }
 
   private showAlert(message: string): void {
