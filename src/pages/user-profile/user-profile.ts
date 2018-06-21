@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { UserProvider } from '../../providers/user/user';
 import { User } from '../../models/user.model';
@@ -16,7 +16,10 @@ export class UserProfilePage {
   private filePhoto: File;
   uploadProgress: number;
 
-  constructor(public userProvider: UserProvider, public authProvider: AuthProvider, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public userProvider: UserProvider, 
+    public authProvider: AuthProvider, 
+    public navCtrl: NavController, 
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {

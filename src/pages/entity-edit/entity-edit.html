@@ -12,41 +12,36 @@
   <h1 text-center>
     <ion-icon class="auth-icon" name="person-add" color="primary"> </ion-icon>
   </h1>
-  <form [formGroup]="entityForm" (ngSubmit) = "onSubmit(); $event.preventDefault()">
+  <ion-item>
+    <ion-icon name="code" item-left> </ion-icon>
+    <ion-input 
+      type="text" 
+      name="title"
+      [(ngModel)]="currentEntity.title" 
+      placeholder="Titulo">
+    </ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-icon name="code" item-left> </ion-icon>
-      <ion-input 
-        type="text" 
-        [(ngModel)]="currentEntity.title" 
-        placeholder="Titulo" 
-        formControlName="title">
-      </ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-icon name="help" item-left> </ion-icon>
+    <ion-input 
+      type="text" 
+      name="value1"
+      [(ngModel)]="currentEntity.value1" 
+      placeholder="Valor 1">
+    </ion-input>
+  </ion-item>
 
-    <ion-item>
-      <ion-icon name="help" item-left> </ion-icon>
-      <ion-input 
-        type="text" 
-        [(ngModel)]="currentEntity.value1" 
-        placeholder="Valor 1" 
-        formControlName="value1">
-      </ion-input>
-    </ion-item>
+  <ion-item>
+    <ion-icon name="help" item-left> </ion-icon>
+    <ion-input 
+      type="text" 
+      name="value2"
+      [(ngModel)]="currentEntity.value2" 
+      placeholder="Valor 2">
+    </ion-input>
+  </ion-item>
+  <br>
 
-    <ion-item>
-      <ion-icon name="help" item-left> </ion-icon>
-      <ion-input 
-        type="text" 
-        [(ngModel)]="currentEntity.value2" 
-        placeholder="Valor 2" 
-        formControlName="value2">
-      </ion-input>
-    </ion-item>
-    <br>
-
-    <button ion-button full type="submit" [disabled]="entityForm.invalid"> Create </button>
-
-  </form>
-
+  <button ion-button full (click)="onSubmit(currentEntity);" type="submit"> Edit </button>
 </ion-content>

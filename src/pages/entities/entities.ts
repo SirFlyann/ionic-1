@@ -4,6 +4,7 @@ import { EntityProvider } from './../../providers/entity/entity';
 import { Observable } from 'rxjs/Observable';
 import { EntityModel } from './../../models/entity.model';
 import { EntityCreatePage } from '../entity-create/entity-create';
+import { EntityEditPage } from '../entity-edit/entity-edit';
 
 @Component({
   selector: 'page-entities',
@@ -26,19 +27,16 @@ export class EntityListPage {
     this.entities = this.entityProvider.entities;
   }
 
-  onEntity(entity: EntityModel): void {
+  onEntityEditClick(entity: EntityModel): void {
+    this.navCtrl.push(EntityEditPage, { entity: entity });
+  }
 
-    this.entityProvider.mapObjectKey<EntityModel>(
-      this.entityProvider.get(entity.uuid)
-    )
-      .first()
-      .subscribe((entity: EntityModel) => {        
-
-        this.navCtrl.push(EntityModel, {
-          recipientEntity: entity
-        });
-
-      });
-
+  onEntityDeleteClick(entity: EntityModel): void {
+    this.entityProvider.removeEntity(entity)
+    .then(response => {
+      console.log(response)
+    }).catch(err => {
+      console.log(err);
+    })
   }
 }

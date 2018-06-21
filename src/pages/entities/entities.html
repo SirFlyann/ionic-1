@@ -4,10 +4,22 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list no-lines>
-      <button ion-item *ngFor="let entity of entities | async" (click)="onEntityClick(entity)">
+  <ion-list>
+    <ion-item-sliding *ngFor="let entity of entities | async">
+      <ion-item>
         {{entity.title}}
-      </button>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="onEntityEditClick(entity)">
+          <ion-icon name="create"></ion-icon> 
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="onEntityDeleteClick(entity)">
+          <ion-icon name="trash"></ion-icon> 
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
   <ion-fab bottom right>
     <button ion-fab color="primary" (click)="onAdd()">

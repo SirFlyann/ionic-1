@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../base.service';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireList, AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { EntityModel } from './../../models/entity.model';
 import { Observable } from 'rxjs/Observable';
-import * as firebase from  'firebase';
 import 'firebase/storage';
 
 @Injectable()
 export class EntityProvider extends BaseService {
 
   entities: Observable<EntityModel[]>;
+
+  currentEntity: AngularFireObject<EntityModel>;
 
   constructor(
     public db: AngularFireDatabase
@@ -31,9 +31,23 @@ export class EntityProvider extends BaseService {
         (ref: any) => ref.orderByChild('title')
       )
     )
+    this.currentEntity = this.entities[0]
   }
 
   get(entityId: string): AngularFireObject<EntityModel> {
-    return this.db.object<EntityModel>(`/entities/${entityId}`);
+    this.currentEntity = this.db.object<EntityModel>(`/entities/${entityId}`);
+    return this.currentEntity;
+  }
+
+  editEntity(entity: {uuid: string, title: string, value1: string, value2: string}): Promise<void> {
+    return this.db.object<EntityModel>(`/entities/${entity.uuid}`)
+      .update(entity)
+      .catch(this.handlePromiseError);
+  }
+
+  removeEntity(entity: {uuid: string, title: string, value1: string, value2: string}): Promise<void> {
+    return this.db.object<EntityModel>(`/entities/${entity.uuid}`)
+      .remove()
+      .catch(this.handlePromiseError);
   }
 }
